@@ -1,24 +1,35 @@
-const express = require('express');
-const mysql = require('mysql');
+import express from 'express';
+import { getAccount, getAccounts, createAccount } from './database.js';
+
+// const express = require('express');
+// const mysql = require('mysql2');
 const app = express();
 const port = 3030;
 
-//My SQL connection
-const connection = mysql.createConnection({ 
+import dotenv from 'dotenv'
+dotenv.config()
 
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'posinventory'
 
+app.get('/', (req, res) => {
+    res.send('Hello World!')
 });
 
-connection.connect((err) => {
-    if (err) {
-      console.error('Error connecting to MySQL:', err);
-    } else {
-      console.log('Connected to MySQL');
-    }
+app.use(express.json());
+
+app.get('/accounts', async (req, res) => {
+    const accounts = await getAccounts()
+    res.send(accounts)
+});
+
+app.get('/accounts/:id', async (req, res) => { 
+    const account = await getAccount(req.params.id)
+    res.send(account)
+});
+
+app.post('/accounts', async (req, res) => {
+    const {username,password} = req.body
+    const result = await createAccount(username,password)
+    res.send(result)
 });
 
 app.get('/createdb', (req, res) => {
@@ -36,12 +47,6 @@ app.get('/createdb', (req, res) => {
 process.on('SIGINT', () => {
     connection.end();
     process.exit();
-});
-
-
-
-app.get('/', (req, res) => {
-    res.send('Hello World!')
 });
 
 app.listen(port, () => {

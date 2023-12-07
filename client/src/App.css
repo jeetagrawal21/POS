@@ -24,6 +24,16 @@
   color: white;
 }
 
+.App-div {
+  background-color: #2453b1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmi);
+  color: black;
+}
 .App-link {
   color: #61dafb;
 }

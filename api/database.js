@@ -40,3 +40,11 @@ export async function createAccount(username, password) {
         password
     }
 }
+
+export async function authUser(username, password) {
+    const [rows] = await pool.query(`
+    SELECT * 
+    FROM accounts 
+    WHERE username = ? AND password = ?`, [username,password])
+    return rows
+}

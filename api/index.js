@@ -1,11 +1,12 @@
 import express from 'express';
-import { getAccount, getAccounts, createAccount } from './database.js';
+import { getAccount, getAccounts, createAccount, authUser } from './database.js';
+import cors from 'cors';
 
 // const express = require('express');
 // const mysql = require('mysql2');
 const app = express();
+app.use(cors());
 const port = 3030;
-
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -29,7 +30,19 @@ app.get('/accounts/:id', async (req, res) => {
 app.post('/accounts', async (req, res) => {
     const {username,password} = req.body
     const result = await createAccount(username,password)
-    res.send(result)
+    return result
+});
+
+app.post('/login', async (req, res) => {
+    const {username,password} = req.body
+    const result = await authUser(username,password)
+    
+    if (result.length > 0) {
+        res.json("Login successful")
+    }
+    else {
+        res.json("Login failed")
+    }
 });
 
 app.get('/createdb', (req, res) => {

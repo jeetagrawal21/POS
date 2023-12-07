@@ -1,14 +1,7 @@
-import mysql from 'mysql2';
-
-import dotenv from 'dotenv'
-dotenv.config()
-
-const pool = mysql.createPool({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE
-}).promise()
+// import mysql from 'mysql2';
+import pool from './database.js'
+// import dotenv from 'dotenv'
+// dotenv.config()
 
 // pool.connect((err) => {
 //     if (err) {
@@ -17,6 +10,7 @@ const pool = mysql.createPool({
 //       console.log('Connected to MySQL');
 //     }
 // });
+
 
 export async function getAccounts() {
     const [rows] = await pool.query("SELECT * FROM accounts")
@@ -48,3 +42,4 @@ export async function authUser(username, password) {
     WHERE username = ? AND password = ?`, [username,password])
     return rows
 }
+

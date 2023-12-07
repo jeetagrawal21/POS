@@ -1,9 +1,7 @@
 import express from 'express';
-import { getAccount, getAccounts, createAccount, authUser } from './database.js';
+import { getAccount, getAccounts, createAccount, authUser } from './controller/accountController.js';
 import cors from 'cors';
 
-// const express = require('express');
-// const mysql = require('mysql2');
 const app = express();
 app.use(cors());
 const port = 3030;
@@ -17,6 +15,7 @@ app.get('/', (req, res) => {
 
 app.use(express.json());
 
+// User authentication and account creation
 app.get('/accounts', async (req, res) => {
     const accounts = await getAccounts()
     res.send(accounts)
@@ -33,6 +32,7 @@ app.post('/accounts', async (req, res) => {
     return result
 });
 
+// Login call
 app.post('/login', async (req, res) => {
     const {username,password} = req.body
     const result = await authUser(username,password)
@@ -45,6 +45,31 @@ app.post('/login', async (req, res) => {
     }
 });
 
+
+// Product CRUD
+
+app.get('/products', async (req, res) => {
+    const products = await getProducts()
+    res.send(products)
+});
+
+app.get('/product/:id', async (req, res) => {
+    const product = await getProduct(req.params.id)
+    res.send(product)
+});
+
+app.get('/productByName/:name', async (req, res) => {
+    const product = await getProductByName(req.params.name)
+    res.send(product)
+}); 
+
+// app.post('/products', async (req, res) => { 
+
+    
+// });
+
+
+//Create database table
 app.get('/createdb', (req, res) => {
 
     let sql = 'CREATE DATABASE posinventory';

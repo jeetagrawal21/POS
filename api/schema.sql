@@ -13,6 +13,7 @@ CREATE TABLE products (
     name VARCHAR(255) NOT NULL,
     description VARCHAR(255),
     price DECIMAL(10,2) NOT NULL,
+    quantity DECIMAL(10,2) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -22,11 +23,11 @@ VALUES
 ('user1', 'user1'),
 ('user2', 'user2');
 
-INSERT INTO products (name, description, price)
+INSERT INTO products (name, description, quantity, price)
 VALUES
-('Product 1', 'Description 1', 10.00),
-('Product 2', 'Description 2', 20.00),
-('Product 3', 'Description 3', 30.00)
+('Product 1', 'Description 1', 25, 10.00),
+('Product 2', 'Description 2', 48, 20.00),
+('Product 3', 'Description 3', 30, 30.00)
 
 
 -- CREATE TABLE cart (

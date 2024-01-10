@@ -1,0 +1,30 @@
+/* Homepage.css */
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .home {
+    display: flex;
+  }
+  
+  .toggle-button {
+    font-size: 24px;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 20px;
+    transition: margin-left 0.5s;
+    overflow-x: hidden;
+  }
+  
+  @media (max-width: 768px) {
+    .main-content {
+      margin-left: 0;
+    }
+  }

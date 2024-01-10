@@ -1,16 +1,29 @@
-import React from 'react';
-import '/Users/jeetagrawal/Desktop/Projects/POS/Point-of-Sale/client/src/index.css';
+import React, { useState } from 'react';
+import SideBar from '../Sidebar/SideBar.js';
+import Cart from '../Cart/Cart.js';
+import Products from '../Products/Products.js';
+import './Homepage.css';
 
-function HomePage() {
+function HomePage(){
+
+    // const [sidebarOpen, setSidebarOpen] = useState(false);
+
+    // const toggleSidebar = () => {
+    // setSidebarOpen(!sidebarOpen);
+    // };
 
     return (
-      <div className='welcome-container'>
-        <h2 className='welcome-heading'>
-        </h2>
-        <a href='/login' className='welcome-link'>Login</a>
-        <a href='/register' className='welcome-link'>Register</a>
-      </div>
+    <div className="home">
+        {/* <button className="toggle-button" onClick={toggleSidebar}> */}
+        
+        {/* </button> */}
+        {/* <SideBar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />x */}
+        <div className="main-content">
+        <SideBar />
+        <Products />
+        <Cart />
+        </div>
+    </div>
     );
-  }
-
+}
 export default HomePage;

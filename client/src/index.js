@@ -1,4 +1,5 @@
 import React, {StrictMode} from 'react';
+import '@fortawesome/fontawesome-free/css/all.css';
 import { createRoot } from "react-dom/client"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';

@@ -1,0 +1,11 @@
+/* CartView.css */
+
+.cart-view {
+    width: 250px;
+    padding: 20px;
+    border-left: 1px solid #ddd;
+  }
+  
+  .cart-view h2 {
+    margin-bottom: 20px;
+  }

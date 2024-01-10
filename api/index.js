@@ -6,10 +6,20 @@ const app = express();
 app.use(cors());
 const port = 3030;
 import dotenv from 'dotenv'
+import e from 'express';
 dotenv.config()
 
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
+
+    if (req.session.loggedIn) {
+        res.send('Welcome to the home page: ' + req.session.username + '!')
+    }
+    else{
+        //Not logged in
+        res.send("You are not logged in");
+    }
+
     res.send('Hello World!')
 });
 
@@ -26,10 +36,17 @@ app.get('/accounts/:id', async (req, res) => {
     res.send(account)
 });
 
-app.post('/accounts', async (req, res) => {
+// Register call
+app.post('/register', async (req, res) => {
     const {username,password} = req.body
     const result = await createAccount(username,password)
-    return result
+    
+    if (result.length != 0) {
+        res.json("User already exists.")
+    }
+    else {
+        res.json("Registration successful")
+    }
 });
 
 // Login call

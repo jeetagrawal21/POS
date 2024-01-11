@@ -8,8 +8,8 @@ function Register() {
 
     const[username, setUsername] = React.useState('')
     const[password, setPassword] = React.useState('')
-    const[email, setEmail] = React.useState('')
-    const[name, setName] = React.useState('')
+    // const[email, setEmail] = React.useState('')
+    // const[name, setName] = React.useState('')
 
     function handleHome(event) {
         event.preventDefault();
